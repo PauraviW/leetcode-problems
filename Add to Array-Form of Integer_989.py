@@ -13,6 +13,6 @@ while K>0:
     A.insert(0, K%10)
     K = K//10
 print(A)
-
+ 
 
 
