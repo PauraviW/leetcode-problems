@@ -17,4 +17,3 @@ for i in set(s):
     if x > 0:
         c +=x
 print(c)
-  
