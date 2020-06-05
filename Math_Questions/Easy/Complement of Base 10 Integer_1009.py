@@ -6,6 +6,6 @@ for i in bn[2:]:
         bn_complement +='1'
     else:
         bn_complement += '0'
-print(int('0b'+bn_complement, 2))
+print(int(bn_complement, 2))
 
 
