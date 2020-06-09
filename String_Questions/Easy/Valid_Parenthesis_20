@@ -1,0 +1,62 @@
+s  = '{[]}'
+s = '(]'
+s = "([)]"
+s = "{[]}"
+s = "()[]{}"
+old_len = 0
+length = len(s)
+#
+# while length!=0 and old_len != length:
+#     # print(old_len, length)
+#     old_len = length
+#     if s.count('[]') > 0:
+#         length = length - 2*s.count('[]')
+#
+#         s = s.replace('[]','')
+#         # print(s, length, '[]')
+#     elif s.count('{}') > 0:
+#         length = length - 2*s.count('{}')
+#         s = s.replace('{}','')
+#         # print(s, length, '{}')
+#     elif s.count('()') > 0:
+#         length = length - 2 *s.count('()')
+#         s = s.replace('()','')
+#         # print(s, length, '()')
+#     print(s, len(s))
+#
+# if length == 0:
+#     print(True)
+# else:
+#     print(False)
+
+
+#################### better solution ########################33
+
+lst = []
+
+para_dict = {'(': ')', '{': '}', '[': ']'}
+
+ans = True
+
+for ele in s:
+
+    if (ele in para_dict):
+
+        lst.append(ele)
+
+    else:
+
+        if ((len(lst) == 0) or (ele != para_dict[lst[len(lst) - 1]])):
+
+            ans = False
+
+        else:
+
+            lst.pop(len(lst) - 1)
+
+if (len(lst) != 0):
+    ans = False
+
+print(ans)
+
+
