@@ -4,20 +4,26 @@ class ListNode:
         self.next = next
 class Solution:
     def removeElements(self, head: ListNode, val: int) -> ListNode:
-        if head:
-            if head.next:
-                orig_node = head
-                while head:
-                    nextnode = head.next
-                    if nextnode.val == val:
-                        head.next = nextnode.next
-                    head = nextnode.next
-                return orig_node
-            else:
-                if head.val == val:
-                    return head.next
+        prev = None
+        orig_head = head
+        while head:
+            if head.val == val:
+                # first element == val
+                if prev == None:
+                    tmp = head.next
+                    head.next = None
+                    head = tmp
+                    orig_head = head
+                # rest all elements == val
                 else:
-                    return head
+                    prev.next = head.next
+                    head.next = None
+                    head = prev.next
+            # element not equal to val
+            else:
+                prev = head
+                head = head.next
+        return orig_head
 
 
         # if head:
@@ -41,8 +47,8 @@ val = [-129, -129]
 val = []
 val = [1]
 val = [1, 2, 6 ,3 ,4, 5 ,6]
-num = 1
-val = [1,1]
+num = 6
+# val = [1,1]
 # val = [1,2]
 # val =  [-129, -129]
 # val = [1,2,3,4,5]
@@ -54,4 +60,6 @@ if len(val) > 0:
         prev_node.next = node
         prev_node = node
     sol = Solution().removeElements(head, num)
-print(sol)
+while sol:
+    print(sol.val)
+    sol = sol.next
