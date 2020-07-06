@@ -1,5 +1,3 @@
-from Array_Questions.Easy.add_nos import ListNode
-
 
 class ListNode:
     def __init__(self, x):
