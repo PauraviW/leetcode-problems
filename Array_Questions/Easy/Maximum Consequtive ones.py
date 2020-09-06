@@ -1,4 +1,5 @@
 def findMaxConsecutiveOnes(self, nums: [int]) -> int:
+    pass
 
 
 
