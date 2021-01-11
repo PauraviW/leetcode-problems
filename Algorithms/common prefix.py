@@ -52,7 +52,8 @@ def computeLPS(pat, m):
 
 text = 'aaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 pat = 'aaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-
+pat = 'ababaa'
+text = 'ababaa'
 n = len(text)
 m = len(pat)
 
@@ -78,3 +79,44 @@ print(total + j + len(pat))
     # if j == m:
     #     print(i-j)
     #     j = lps[j - 1]
+
+
+    ############################################################
+
+pat = "ababaa"
+def commonPRe(s):
+    if  len(s)== 1:
+        return 1
+
+    prefix_len = [0] * len(s)
+    start = [0] * len(s)
+    i = 0
+    for j in range(1, len(s)):
+        if s[i] == s[j]:
+            i += 1
+            prefix_len[j] = i; # can we set prefix_len[i-1] = 0?
+        else:
+            while i > 0:
+                i = prefix_len[i-1]
+                if s[i] == s[j]:
+                    i += 1
+                    break
+            if i == 0:
+                if s[i] == s[j]:
+                    i += 1
+                    # break
+            prefix_len[j] = i
+
+    for i in range(len(s)):
+        if prefix_len[i] > 0:
+            commonLen = prefix_len[i]
+            while commonLen > 0:
+                index = i - commonLen + 1
+                start[index]  = max(start[index], commonLen)
+                commonLen = prefix_len[commonLen - 1]
+
+    sum = len(s)
+    for i in range(len(s)):
+        sum += start[i]
+    return sum
+print(commonPRe(pat))
