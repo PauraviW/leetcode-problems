@@ -13,7 +13,7 @@ class Solution:
     def subStringsLessKDist(self, inputstring, k):
         if not inputstring:
             return []
-        ans = []
+        ans = set()
         numDist = 0
         countdict = {i:0 for i in set(list(inputstring))}
         left = 0
@@ -26,13 +26,13 @@ class Solution:
                 numDist += 1
 
             if right - left + 1 == k:
-                if numDist == k-1:
-                    ans.append(inputstring[left:right+1])
+                if numDist == k:
+                    ans.add(inputstring[left:right+1])
                 countdict[inputstring[left]] -= 1
                 if countdict[inputstring[left]] == 0:
                     numDist -= 1
                 left += 1
-
+                right += 1
             else:
                 right += 1
         return ans
@@ -42,4 +42,6 @@ class Solution:
 
 
 obj = Solution()
-print(obj.subStringsLessKDist('awagalkk', 1))
+s = "awaglknagawunagwkwagl"
+k = 4
+print(obj.subStringsLessKDist(s, k))
